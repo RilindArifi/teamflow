@@ -1,0 +1,1 @@
+import{I as c}from"./iconify-CA5cU21b.js";import{_ as e,r as t,c as s,o as r,b as a}from"./index-rbxh5PlU.js";const p={components:{Icon:c},props:{icon:{type:String,default:"heroicons-outline:home"}}};function i(_,l,o,m,f,u){const n=t("Icon");return r(),s("span",null,[a(n,{icon:o.icon},null,8,["icon"])])}const $=e(p,[["render",i]]);export{$ as I};
