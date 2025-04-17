@@ -1,5 +1,7 @@
 <template>
   <div>
+
+    <Breadcrumb />
     <Card>
       <div class="dashcode-calender">
         <FullCalendar
@@ -126,10 +128,12 @@ import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import { calendarEvents, categories } from "./Initialize-event";
 import { Form } from "vee-validate";
+import Breadcrumb from "@/components/Breadcrumbs/index.vue";
 
 export default {
   name: "calander",
   components: {
+    Breadcrumb,
     FullCalendar,
     Card,
     Modal,

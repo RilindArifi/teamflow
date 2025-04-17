@@ -11,13 +11,13 @@ export const menuItems = [
   {
     title: "Dashboard",
     icon: "heroicons-outline:home",
-    link: "dashboard",
+    link: "/dashboard",
     can: "view dashboard"
   },
   {
     title: "Calendar",
     icon: "heroicons-outline:calendar",
-    link: "calendar",
+    link: "/dashboard/calendar",
     can: 'view calendar'
   },
 
@@ -28,19 +28,19 @@ export const menuItems = [
   {
     title: "Projects",
     icon: "heroicons-outline:rectangle-group",
-    link: "projects",
+    link: "/dashboard/projects",
     can: "view projects"
   },
   {
     title: "Tasks",
     icon: "heroicons-outline:rectangle-stack",
-    link: "tasks",
+    link: "/dashboard/tasks",
     can: "view tasks"
   },
   {
     title: "Leaves",
     icon: "heroicons-outline:calendar-days",
-    link: "leaves",
+    link: "/dashboard/leaves",
     can: "view leaves"
   },
 
@@ -51,13 +51,13 @@ export const menuItems = [
   {
     title: "Employee",
     icon: "heroicons-outline:user-group",
-    link: "employee",
+    link: "/dashboard/employee",
     can: "view users"
   },
   {
     title: "Roles",
     icon: "heroicons-outline:lock-open",
-    link: "roles",
+    link: "/dashboard/roles",
     can: "view roles"
   },
 ];

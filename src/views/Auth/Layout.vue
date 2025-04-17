@@ -1,13 +1,3 @@
-<script setup>
-// Image Import
-import logoWhite from "@/assets/images/logo/logo-white.svg"
-import logo from "@/assets/images/logo/logo.svg"
-import sideImg from "@/assets/images/auth/ils1.svg"
-import Signin from "@/views/Auth/Components/Signin.vue";
-import Social from "@/views/Auth/Components/Social.vue";
-
-</script>
-
 <template>
   <div class="loginwrapper">
     <div class="lg-inner-column">
@@ -66,15 +56,22 @@ import Social from "@/views/Auth/Components/Social.vue";
                 />
               </router-link>
             </div>
+
               <router-view />
 
           </div>
           <div class="auth-footer text-center">
-            Copyright 2021, Dashcode All Rights Reserved.
+            &copy; 2025, Teamflow All Rights Reserved.
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+<script setup>
+import logoWhite from "@/assets/images/logo/logo-white.svg"
+import logo from "@/assets/images/logo/logo.svg"
+import sideImg from "@/assets/images/auth/ils1.svg"
+
+</script>
 <style lang="scss"></style>

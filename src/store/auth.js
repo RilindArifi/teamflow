@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import axiosClient from "@/axios";
 import router from "@/router";
 
+
 export const useAuthStore = defineStore('auth',{
     state: ()=>{
         return {
@@ -16,20 +17,24 @@ export const useAuthStore = defineStore('auth',{
     },
     actions:{
         async register(state) {
+            this.isLoading = true
             try {
                 const { data } = await axiosClient.post("auth/register", state);
                 this.loadData(data);
                 await this.fetchUser()
                 await router.push({name: 'dashboard'});
-            } catch (error) {}
+            }catch (error) { this.isLoading = false
+            }finally { this.isLoading = false }
         },
         async login(user) {
+            this.isLoading = true
             try {
                 const { data } = await axiosClient.post("auth/login", user);
                 this.loadData(data);
                 await this.fetchUser()
                 await router.push({name: 'dashboard'});
-            } catch (error) {}
+            }catch (error) { this.isLoading = false
+            }finally { this.isLoading = false }
         },
         loadData(data) {
             this.user  = data.user;
@@ -63,6 +68,12 @@ export const useAuthStore = defineStore('auth',{
                     this.user = null;
                 }
             }
-        }
+        },
+        async forgetPassword(state) {
+            return await axiosClient.post('auth/forgot-password', state)
+        },
+        async resetPassword(state) {
+            return await axiosClient.post('auth/reset-password', state)
+        },
     }
 })

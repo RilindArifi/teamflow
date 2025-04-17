@@ -6,7 +6,7 @@ const toast = useToast();
 
 const axiosClient = axios.create({
     // baseURL: ''
-    baseURL: "http://teamflow-back.test/api/", //local domain
+    baseURL: "https://teamflow-back.test/api/", //local domain
 });
 
 axiosClient.interceptors.request.use(async (config) => {
@@ -32,6 +32,9 @@ axiosClient.interceptors.response.use(
         } else if (status === 403) {
             toast.error(message || 'Forbidden');
             window.location.href = '/unauthorized';
+        } else if (status === 409) {
+            toast.error(message);
+            window.location.href = '/email-verify';
         } else {
             let msg = error.message;
             if (error.response?.data?.errors) {

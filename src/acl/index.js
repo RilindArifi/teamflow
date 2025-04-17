@@ -1,4 +1,3 @@
-
 import { useAuthStore } from "@/store/auth";
 
 export function hasRole(name) {

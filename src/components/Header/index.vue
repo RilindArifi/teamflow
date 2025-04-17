@@ -52,6 +52,7 @@
         <div
           class="nav-tools flex items-center lg:space-x-6 space-x-3 rtl:space-x-reverse"
         >
+          <Clock />
           <LanguageVue />
           <SwitchDark />
           <MonochromeMode />
@@ -78,6 +79,7 @@ import Logo from "./Navtools/Logo.vue";
 import MobileLogo from "./Navtools/MobileLogo.vue";
 import window from "@/mixins/window";
 import HandleMobileMenu from "./Navtools/HandleMobileMenu.vue";
+import Clock from "@/components/Clock"
 
 export default {
   mixins: [window],
@@ -94,6 +96,7 @@ export default {
     Logo,
     MobileLogo,
     HandleMobileMenu,
+    Clock,
   },
 
   methods: {

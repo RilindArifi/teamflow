@@ -1,5 +1,6 @@
 import auth from "@/middleware/auth";
 import guest from "@/middleware/guest";
+import verified from "@/middleware/verified";
 
 const routes = [
   {
@@ -9,26 +10,36 @@ const routes = [
     component: () => import("@/views/Auth/Layout.vue"),
     children: [
       {
-        path: "/login",
+        path: "login",
         name: "login",
         component: () => import("@/views/Auth/Login.vue"),
       },
       {
-        path: "/register",
+        path: "register",
         name: "register",
         component: () => import("@/views/Auth/Register.vue"),
+      },
+      {
+        path: "forgot-password",
+        name: "forgot-password",
+        component: () => import("@/views/Auth/ForgotPassword.vue"),
+      },
+      {
+        path: "reset-password",
+        name: "reset-password",
+        component: () => import("@/views/Auth/ResetPassword.vue"),
       },
     ],
   },
   {
-    path: "/",
+    path: "/dashboard",
     name: "Layout",
-    redirect: "dashboard",
+    redirect: {name: "dashboard"},
     beforeEnter: auth,
     component: () => import("@/Layout/AuthenticateLayout.vue"),
     children: [
       {
-        path: "dashboard",
+        path: "",
         name: "dashboard",
         meta: {can: 'view dashboard'},
         component: () => import("@/views/Dashboard/Index.vue"),
@@ -81,6 +92,19 @@ const routes = [
     path: "/unauthorized",
     name: "unauthorized",
     component: () => import("@/views/Errors/403.vue"),
+  },
+  {
+    path: "/email-verify",
+    redirect: "email-verify",
+    beforeEnter: verified,
+    component: () => import("@/views/Auth/Layout.vue"),
+    children: [
+      {
+        path: "",
+        name: "email-verify",
+        component: () => import("@/views/Auth/EmailVerify.vue"),
+      }
+    ]
   },
 ];
 
