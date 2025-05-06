@@ -1,18 +1,18 @@
 <template>
   <Dropdown classMenuItems=" w-[180px] top-[58px] ">
     <div class="flex items-center">
-      <div class="flex-1 ltr:mr-[10px] rtl:ml-[10px]">
-        <div class="lg:h-8 lg:w-8 h-7 w-7 rounded-full">
-          <vue-avatar :username="store.user.name ?? store.user.company_name" :src="store.user.avatar" :size="40"></vue-avatar>
-        </div>
+      <div class="flex-1 rtl:ml-[5px]">
+        <vue-avatar :username="store.user.name" :img-src="store.user.avatar" :size="35" background-color="#8ad1a5"></vue-avatar>
       </div>
       <div
-        class="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap"
+        class="text-start ml-2 flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap"
       >
-        <span
-          class="overflow-hidden text-ellipsis whitespace-nowrap w-[85px] block"
-          >{{store.user.company_name ?? store.user.name}}</span>
-        <span class="text-base inline-block ltr:ml-[10px] rtl:mr-[10px]"
+        <span class="overflow-hidden text-ellipsis w-[85px] block" >
+          <span>{{ store.user.name }}</span>
+          <br>
+          <p class="text-xs text-green-600 font-bold">{{store.user.roles}}</p>
+        </span>
+        <span class="text-base inline-block rtl:mr-[3px]"
           ><Icon icon="heroicons-outline:chevron-down"></Icon
         ></span>
       </div>
@@ -42,24 +42,30 @@
 </template>
 <script setup>
 import VueAvatar from "@webzlodimir/vue-avatar";
-import { ref } from "vue";
+import {computed, onMounted, ref} from "vue";
 import { useRouter } from "vue-router";
 import { MenuItem } from "@headlessui/vue";
 import Dropdown from "@/components/Dropdown";
 import Icon from "@/components/Icon";
 import profileImg from "@/assets/images/all-img/user.png";
 import {useAuthStore} from "@/store/auth";
+import {useTeamStore} from "@/store/teams";
 
 const router = useRouter();
 const profileImage = profileImg;
 
 const store = useAuthStore()
+const teamStore = useTeamStore()
+
+onMounted(() => {
+  teamStore.getTeams()
+})
 
 const ProfileMenu = ref([
   {
     label: "Profile",
     icon: "heroicons-outline:user",
-    link: () => router.push("profile"),
+    link: () => router.push({name: 'profile'}),
   },
   {
     label: "Chat",
@@ -94,10 +100,11 @@ const ProfileMenu = ref([
   {
     label: "Logout",
     icon: "heroicons-outline:login",
-    link: () => {
-      store.logout()
+    link: async () => {
+      await store.signOut()
     },
   },
 ]);
+
 </script>
 <style lang=""></style>

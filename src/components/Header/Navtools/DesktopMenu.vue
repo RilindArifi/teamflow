@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li
-      v-for="(item, i) in newMenulist"
+      v-for="(item, i) in filteredTopMenu"
       :key="i"
       :class="
         item.child
@@ -16,7 +16,7 @@
           <span class="icon-box" v-if="item.icon">
             <Icon :icon="item.icon" />
           </span>
-          <div class="text-box" v-if="item.title">{{ item.title }}</div>
+          <div class="text-box" v-if="item.title">{{ $t('sidebar.' + item.title) }}</div>
         </div>
       </router-link>
       <a href="javascript: void(0);" v-if="item.child || item.megamenu">
@@ -24,7 +24,7 @@
           <span class="icon-box" v-if="item.icon">
             <Icon :icon="item.icon"
           /></span>
-          <div class="text-box" v-if="item.title">{{ item.title }}</div>
+          <div class="text-box" v-if="item.title">{{ $t('sidebar.menu.' + item.title) }}</div>
         </div>
         <div
           class="flex-none text-sm ltr:ml-3 rtl:mr-3 leading-[1] relative top-1"
@@ -41,13 +41,11 @@
           <router-link :to="childitem.childlink" v-if="!childitem.submenu">
             <div class="flex space-x-2 items-start rtl:space-x-reverse">
               <Icon :icon="childitem.childicon" class="leading-[1] text-base" />
-              <span class="leading-[1]">{{ childitem.childtitle }}</span>
+              <span class="leading-[1]">{{ $t('sidebar.'+ childitem.childtitle) }}</span>
             </div>
           </router-link>
 
-          <a href="javascript: void(0);" v-if="childitem.submenu">{{
-            childitem.childtitle
-          }}</a>
+          <a href="javascript: void(0);" v-if="childitem.submenu"> {{ $t('sidebar.' +  childitem.childtitle) }}</a>
 
           <ul class="sub-menu" v-if="childitem.submenu">
             <li
@@ -100,27 +98,38 @@
     </li>
   </ul>
 </template>
-<script>
-import { topMenu } from "../../../constant/data.js";
-import Icon from "../../Icon";
-export default {
-  components: {
-    Icon,
-  },
-  data() {
-    return {
-      topMenu,
-    };
-  },
+<script setup>
+import { topMenu } from "@/constant/data.js";
+import Icon from "@/components/Icon";
+import {computed} from "vue";
+import {can} from "@/acl";
 
-  computed: {
-    newMenulist: function () {
-      return this.topMenu.filter(function (item) {
-        return Boolean(!item.isHeadr);
-      });
-    },
-  },
-};
+
+const filteredTopMenu = computed(() => {
+  const filterWithPermission = (items) => {
+    return items
+        .filter(item => !item.isHeadr)
+        .map(item => {
+          const children = item.child ? filterWithPermission(item.child) : undefined;
+
+          const hasPermission = !item.can || can(item.can);
+          const hasValidChildren = children && children.length > 0;
+
+          if (hasPermission || hasValidChildren) {
+            return {
+              ...item,
+              child: children,
+            };
+          }
+
+          return null;
+        })
+        .filter(Boolean);
+  };
+
+  return filterWithPermission(topMenu);
+});
+
 </script>
 <style lang="scss">
 .main-menu {

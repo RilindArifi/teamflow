@@ -36,13 +36,14 @@
 </template>
 <script setup>
 
-import axiosClient from "@/axios";
+import axiosClient from "@/plugins/axios";
+import {supabase} from "@/lib/supabase";
 
 const
-    handleLogin = (provider) => {
-        axiosClient.get(`auth/${provider}/redirect`).then((response) => {
-          window.location.href = response.data.url
-        })
+    handleLogin = async (provider) => {
+      return await supabase.auth.signInWithOAuth({
+        provider: provider
+      })
     }
 </script>
 <style lang=""></style>

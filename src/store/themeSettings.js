@@ -12,7 +12,7 @@ export const useThemeSettingsStore = defineStore('themeSettings',{
         skin: "default",
         theme: "light",
         isOpenSettings: false,
-        cWidth: "full",
+        cWidth: "boxed",
         menuLayout: "vertical",
         navbarType: "sticky",
         isMouseHovered: false,

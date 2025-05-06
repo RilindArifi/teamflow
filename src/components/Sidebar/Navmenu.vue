@@ -20,11 +20,11 @@
         <span class="menu-icon" v-if="item.icon">
           <Icon :icon="item.icon"
           /></span>
-          <div class="text-box" v-if="item.title">{{ item.title }}</div>
+          <div class="text-box" v-if="item.title">{{ $t('sidebar.'+ item.title) }}</div>
         </router-link>
         <!-- ?? only for menulabel ??  -->
         <div v-else-if="item.isHeadr && !item.child" class="menulabel">
-          {{ item.title }}
+          {{ $t('sidebar.menu.'+ item.title) }}
         </div>
         <!-- !!sub menu parent li !! -->
         <div
@@ -39,7 +39,7 @@
           <span class="menu-icon" v-show="item.icon">
             <Icon :icon="item.icon"
             /></span>
-            <div class="text-box" v-if="item.title">{{ item.title }}</div>
+            <div class="text-box" v-if="item.title">{{ $t('sidebar.'+ item.title) }}</div>
           </div>
           <div class="flex-0">
             <div
@@ -89,7 +89,7 @@
                   "
                 ></span>
                 <span class="flex-1">
-                  {{ ci.childtitle }}
+                  {{ $t('sidebar.'+ ci.childtitle) }}
                 </span>
               </span>
               </router-link>
@@ -133,9 +133,30 @@ const
 
 
 
-const filteredItems = computed(() =>
-    props.items.filter((item) => !item.can || can(item.can))
-);
+const filteredItems = computed(() => {
+  const filterWithPermission = (items) => {
+    return items
+        .map(item => {
+          const children = item.child
+              ? filterWithPermission(item.child)
+              : undefined
+
+          const hasPermission = !item.can || can(item.can)
+          const hasValidChildren = children && children.length > 0
+
+          if (hasPermission || hasValidChildren) {
+            return {
+              ...item,
+              child: children,
+            }
+          }
+
+          return null
+        })
+        .filter(Boolean)
+  }
+  return filterWithPermission(props.items)
+})
 
 // Local state
 const activeSubmenu = ref(null);

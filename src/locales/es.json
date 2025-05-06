@@ -1,0 +1,24 @@
+{
+  "sidebar": {
+    "menu": {
+      "overview": "Resumen",
+      "operations": "Operaciones",
+      "user_management": "Gestión de usuarios",
+      "administration": "Administración"
+    },
+    "dashboard": "Panel de control",
+    "events": "Eventos",
+    "messaging": "Mensajería",
+    "to_do_list": "Lista de tareas",
+    "projects": "Proyectos",
+    "tasks": "Tareas",
+    "leaves": "Permisos",
+    "employees": "Empleados",
+    "roles_and_permissions": "Roles y permisos",
+    "system_tools": "Herramientas del sistema",
+    "activity_logs": "Registros de actividad",
+    "subscription_plans": "Planes de suscripción",
+    "help_center": "Centro de ayuda",
+    "system_settings": "Configuraciones del sistema"
+  }
+}

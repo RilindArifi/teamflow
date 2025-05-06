@@ -1,24 +1,53 @@
 import axios from "axios";
-import store from "../store";
-import router from "../router/index.js";
+import Cookies from "js-cookie";
+import {useToast} from "vue-toastification";
+
+const toast = useToast();
 
 const axiosClient = axios.create({
-    baseURL: 'http://dashkit-laravel-api/api/'
-})
+    // baseURL: ''
+    baseURL: "https://teamflow-back.test/api/", //local domain
+});
 
-axiosClient.interceptors.request.use(config => {
-    config.headers.Authorization = `Bearer ${store.state.user.token}`
-    return config;
-})
-
-axiosClient.interceptors.response.use(response => {
-    return response;
-}, error => {
-    if (error.response.status === 401) {
-        store.commit('setToken', null)
-        router.push({name: 'login'})
+axiosClient.interceptors.request.use(async (config) => {
+    const token = Cookies.get("token");
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
     }
-    throw error;
-})
+    return config;
+});
+
+axiosClient.interceptors.response.use(
+    async (response) => {
+        return response;
+    },
+    async (error) => {
+        const status = error?.response?.status;
+        const message = error?.response?.data?.message;
+
+        if (status === 401) {
+            toast.error(message || 'Unauthorized');
+            window.location.href = '/auth/login';
+        } else if (status === 403) {
+            toast.error(message || 'Forbidden');
+            window.location.href = '/unauthorized';
+        } else if (status === 409) {
+            toast.error(message);
+            window.location.href = '/email-verify';
+        } else {
+            let msg = error.message;
+            if (error.response?.data?.errors) {
+                msg = error.response.data.message;
+            } else if (error.response?.data?.error) {
+                msg = error.response.data.error;
+            } else if (error.response?.data?.message) {
+                msg = error.response.data.message;
+            }
+            if (msg) toast.error(msg);
+        }
+
+        return Promise.reject(error);
+    }
+);
 
 export default axiosClient;

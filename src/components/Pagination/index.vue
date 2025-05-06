@@ -24,18 +24,16 @@
       </div>
 
       <div class="flex items-center" v-if="enableSearch && enableSelect">
+        <span class="text-sm text-slate-500 inline-block ltr:mr-2"> Total {{total}}</span>
         <Select
           v-model.number="input2"
-          @change="changePage(input2)"
-          placeholder="Go"
-          classInput=" w-[60px] h-9 "
+          @change="customPerPageChange(input2)"
+          placeholder="Page"
+          classInput=" w-[90px] h-5 mr-4 "
           :options="options"
         >
         </Select>
 
-        <span class="text-sm text-slate-500 inline-block ltr:ml-2 rtl:mr-2">
-          of {{ perPage }} entries</span
-        >
       </div>
     </div>
     <ul class="pagination" :class="paginationClass">

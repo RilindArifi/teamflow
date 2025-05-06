@@ -18,9 +18,10 @@
           Notifications
         </div>
         <div class="text-slate-800 dark:text-slate-200 text-xs md:text-right">
-          <router-link :to="{ name: 'notifications' }" class="underline"
-            >View all</router-link
-          >
+<!--          <router-link :to="{ name: 'notifications' }" class="underline"-->
+<!--            >View all</router-link-->
+<!--          >-->
+          View all
         </div>
       </div>
       <div class="divide-y divide-slate-100 dark:divide-slate-800">
@@ -88,7 +89,7 @@
 import Dropdown from "@/components/Dropdown";
 import Icon from "@/components/Icon";
 import { MenuItem } from "@headlessui/vue";
-import { notifications } from "../../../constant/data";
+import { notifications } from "@/constant/data";
 export default {
   components: {
     Icon,

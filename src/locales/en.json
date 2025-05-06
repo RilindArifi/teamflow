@@ -1,0 +1,25 @@
+{
+  "sidebar": {
+    "menu": {
+      "overview": "Overview",
+      "operations": "Operations",
+      "user_management": "User Management",
+      "administration": "Administration"
+    },
+    "dashboard": "Dashboard",
+    "events": "Events",
+    "messaging": "Messaging",
+    "to_do_list": "To-Do List",
+    "projects": "Projects",
+    "tasks": "Tasks",
+    "leaves": "Leaves",
+    "employees": "Employees",
+    "clients": "Clients",
+    "roles_and_permissions": "Roles & Permissions",
+    "system_tools": "System Tools",
+    "activity_logs": "Activity Logs",
+    "subscription_plans": "Subscription Plans",
+    "help_center": "Help Center",
+    "system_settings": "System Settings"
+  }
+}

@@ -41,7 +41,7 @@
 import Textinput from "@/components/Textinput";
 import { useField, useForm } from "vee-validate";
 import * as yup from "yup";
-import axiosClient from "@/axios";
+import axiosClient from "@/plugins/axios";
 import {useToast} from "vue-toastification";
 import {useRouter} from "vue-router";
 import Button from "@/components/Button/index.vue";

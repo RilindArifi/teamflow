@@ -11,10 +11,6 @@
               alt=""
               class="h-full w-full object-cover rounded-full"
           /></span>
-          <span
-            class="text-sm md:block hidden font-medium text-slate-600 dark:text-slate-300"
-            >{{ selectLanguage.name }}</span
-          >
         </ListboxButton>
 
         <Transition
@@ -27,7 +23,7 @@
           >
             <ListboxOption
               v-slot="{ active }"
-              v-for="item in months"
+              v-for="item in filterLanguage"
               :key="item.name"
               :value="item"
               as="template"
@@ -68,17 +64,32 @@
 <script setup>
 import langImg1 from "@/assets/images/flags/usa.png"
 import langImg2 from "@/assets/images/flags/gn.png"
-import { ref } from "vue";
+import langImg3 from "@/assets/images/flags/fr.jpg"
+import langImg4 from "@/assets/images/flags/es.png"
+import {computed, ref, watch} from "vue";
 import {
   Listbox,
   ListboxButton,
   ListboxOptions,
   ListboxOption,
 } from "@headlessui/vue";
+import {setI18nLanguage} from "@/plugins/i18n";
 
-const months = [
-  { name: "En", image: langImg1 },
-  { name: "Gn", image: langImg2 },
+const languages = [
+  { code: "en", name: "English", image: langImg1 },
+  { code: "de", name: "German", image: langImg2 },
+  { code: "fr", name: "French", image: langImg3 },
+  { code: "es", name: "Spanish", image: langImg4 },
 ];
-const selectLanguage = ref(months[0]);
+
+const locale = localStorage.getItem('lang')
+const selectLanguage = ref(languages.find((lang) => lang.code === locale) || languages[0])
+
+const filterLanguage = computed(() =>
+    languages.filter((lang) => lang.code !== selectLanguage.value.code)
+)
+
+watch(selectLanguage, (newLang) => {
+  setI18nLanguage(newLang.code);
+});
 </script>

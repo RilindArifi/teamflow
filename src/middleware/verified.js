@@ -3,7 +3,7 @@ import { useAuthStore } from "@/store/auth";
 export default async (to, from, next) => {
     const store = useAuthStore();
 
-    if (!store.token) return next({ name: "login" });
+    if (!store.session) return next({ name: "login" });
 
     if (!store.user) await store.fetchUser();
 

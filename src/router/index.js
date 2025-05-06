@@ -17,7 +17,7 @@ const router = createRouter({
   },
 });
 router.beforeEach(async (to, from, next) => {
-  if (to.meta.can) {
+  if (to.meta.can || to.meta.auth) {
     await checkPermission(to, from, next, to.meta.can);
   } else {
     next();

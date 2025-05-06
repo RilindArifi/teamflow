@@ -3,42 +3,52 @@ import user2Img from "@/assets/images/all-img/user2.png";
 import user3Img from "@/assets/images/all-img/user3.png";
 import user4Img from "@/assets/images/all-img/user4.png";
 
+
 export const menuItems = [
   {
     isHeadr: true,
-    title: "menu",
+    title: "overview",
   },
   {
-    title: "Dashboard",
+    title: 'dashboard',
     icon: "heroicons-outline:home",
     link: "/dashboard",
     can: "view dashboard"
   },
   {
-    title: "Calendar",
+    title: 'events',
     icon: "heroicons-outline:calendar",
-    link: "/dashboard/calendar",
-    can: 'view calendar'
+    link: "/dashboard/events",
+  },
+  {
+    title: "messaging",
+    icon: "heroicons-outline:chat",
+    link: "/dashboard/chat",
+  },
+  {
+    title: "to_do_list",
+    icon: "heroicons-outline:clipboard-check",
+    link: "/dashboard/todo",
   },
 
   {
     isHeadr: true,
-    title: "work",
+    title: "operations",
   },
   {
-    title: "Projects",
+    title: "projects",
     icon: "heroicons-outline:rectangle-group",
     link: "/dashboard/projects",
     can: "view projects"
   },
   {
-    title: "Tasks",
+    title: "tasks",
     icon: "heroicons-outline:rectangle-stack",
     link: "/dashboard/tasks",
     can: "view tasks"
   },
   {
-    title: "Leaves",
+    title: "leaves",
     icon: "heroicons-outline:calendar-days",
     link: "/dashboard/leaves",
     can: "view leaves"
@@ -46,65 +56,61 @@ export const menuItems = [
 
   {
     isHeadr: true,
-    title: "Management",
+    title: "user_management",
   },
   {
-    title: "Employee",
-    icon: "heroicons-outline:user-group",
-    link: "/dashboard/employee",
+    title: "clients",
+    icon: "heroicons-outline:users",
+    link: "/dashboard/clients",
     can: "view users"
   },
   {
-    title: "Roles",
+    title: "employees",
+    icon: "heroicons-outline:user-group",
+    link: "/dashboard/employees",
+    can: "view users"
+  },
+  {
+    title: "roles_and_permissions",
     icon: "heroicons-outline:lock-open",
     link: "/dashboard/roles",
     can: "view roles"
   },
+
+  {
+    isHeadr: true,
+    title: "administration",
+  },
+  {
+    title: "system_tools",
+    icon: "heroicons-outline:view-boards",
+    link: "#",
+    child: [
+      {
+        childtitle: "activity_logs",
+        childlink: "/dashboard/activities",
+        can: "manage activities"
+      },
+      {
+        childtitle: "subscription_plans",
+        childlink: "/dashboard/packages",
+        can: "manage packages"
+      },
+      {
+        childtitle: "help_center",
+        childlink: "/dashboard/faq",
+        can: "manage faq"
+      },
+      {
+        childtitle: "system_settings",
+        childlink: "/dashboard/settings",
+        can: "manage settings"
+      },
+    ],
+  },
 ];
 // menuseetins
 
-export const ProfileMenu = [
-  {
-    label: "Profile",
-    icon: "heroicons-outline:user",
-    link: "#",
-  },
-  {
-    label: "Chat",
-    icon: "heroicons-outline:chat",
-    link: "chat",
-  },
-  {
-    label: "Email",
-    icon: "heroicons-outline:mail",
-    link: "email",
-  },
-  {
-    label: "Todo",
-    icon: "heroicons-outline:chip",
-    link: "todo",
-  },
-  {
-    label: "Settings",
-    icon: "heroicons-outline:cog",
-    link: "#",
-  },
-  {
-    label: "Price",
-    icon: "heroicons-outline:credit-card",
-    link: "pricing",
-  },
-  {
-    label: "Faq",
-    icon: "heroicons-outline:information-circle",
-    link: "faq",
-  },
-  {
-    label: "Logout",
-    icon: "heroicons-outline:login",
-    link: "/",
-  },
-];
 
 export const notifications = [
   {
@@ -198,329 +204,107 @@ export const message = [
 
 export const topMenu = [
   {
-    isHeadr: true,
-    title: "DASHBOARD",
-  },
-  {
-    title: "Dashboard",
+    title: "dashboard",
     icon: "heroicons-outline:home",
-    link: "/app/home",
-    child: [
-      {
-        childtitle: "Analytics Dashboard",
-        childlink: "home",
-        childicon: "heroicons:presentation-chart-line",
-      },
-      {
-        childtitle: "Ecommerce Dashboard",
-        childlink: "ecommerce",
-        childicon: "heroicons:shopping-cart",
-      },
-      {
-        childtitle: "Project  Dashboard",
-        childlink: "project",
-        childicon: "heroicons:briefcase",
-      },
-      {
-        childtitle: "CRM Dashboard",
-        childlink: "crm",
-        childicon: "ri:customer-service-2-fill",
-      },
-      {
-        childtitle: "Banking Dashboard",
-        childlink: "banking",
-        childicon: "heroicons:wrench-screwdriver",
-      },
-    ],
+    link: "/dashboard",
+    can: "view dashboard"
   },
   {
-    title: "App",
+    title: "overview",
     icon: "heroicons-outline:chip",
-    link: "/app/home",
     child: [
       {
-        childtitle: "Calendar",
-        childlink: "calender",
+        childtitle: "events",
         childicon: "heroicons-outline:calendar",
+        childlink: "/dashboard/events",
       },
       {
-        childtitle: "Kanban",
-        childlink: "kanban",
-        childicon: "heroicons-outline:view-boards",
+        childtitle: "messaging",
+        childicon: "heroicons-outline:chat",
+        childlink: "/dashboard/chat",
       },
       {
-        childtitle: "Todo",
-        childlink: "todo",
+        childtitle: "to_do_list",
         childicon: "heroicons-outline:clipboard-check",
-      },
-      {
-        childtitle: "Projects",
-        childlink: "projects",
-        childicon: "heroicons-outline:document",
+        childlink: "/dashboard/todo",
       },
     ],
   },
   {
-    title: "Pages",
+    title: "operations",
     icon: "heroicons-outline:view-boards",
-    link: "/app/home",
-    megamenu: [
+    child: [
       {
-        megamenutitle: "Authentication",
-        megamenuicon: "heroicons-outline:user",
-        singleMegamenu: [
-          {
-            m_childtitle: "Signin One",
-            m_childlink: "/",
-          },
-          {
-            m_childtitle: "Signin Two",
-            m_childlink: "/login2",
-          },
-          {
-            m_childtitle: "Signin Three",
-            m_childlink: "/login3",
-          },
-          {
-            m_childtitle: "Signup One",
-            m_childlink: "/register",
-          },
-          {
-            m_childtitle: "Signup Two",
-            m_childlink: "/register/register2",
-          },
-          {
-            m_childtitle: "Signup Three",
-            m_childlink: "/register/register3",
-          },
-          {
-            m_childtitle: "Forget Password One",
-            m_childlink: "/forgot-password",
-          },
-          {
-            m_childtitle: "Forget Password Two",
-            m_childlink: "/forgot-password2",
-          },
-          {
-            m_childtitle: "Forget Password Three",
-            m_childlink: "/forgot-password3",
-          },
-          {
-            m_childtitle: "Lock Screen One",
-            m_childlink: "/lock-screen",
-          },
-          {
-            m_childtitle: "Lock Screen Two",
-            m_childlink: "/lock-screen2",
-          },
-          {
-            m_childtitle: "Lock Screen Three",
-            m_childlink: "/lock-screen3",
-          },
-        ],
-      },
-
-      {
-        megamenutitle: "Components",
-        megamenuicon: "heroicons-outline:user",
-        singleMegamenu: [
-          {
-            m_childtitle: "typography",
-            m_childlink: "typography",
-          },
-          {
-            m_childtitle: "colors",
-            m_childlink: "colors",
-          },
-          {
-            m_childtitle: "alert",
-            m_childlink: "alert",
-          },
-          {
-            m_childtitle: "button",
-            m_childlink: "button",
-          },
-          {
-            m_childtitle: "card",
-            m_childlink: "card",
-          },
-          {
-            m_childtitle: "carousel",
-            m_childlink: "carousel",
-          },
-          {
-            m_childtitle: "dropdown",
-            m_childlink: "dropdown",
-          },
-          {
-            m_childtitle: "image",
-            m_childlink: "image",
-          },
-          {
-            m_childtitle: "modal",
-            m_childlink: "modal",
-          },
-          {
-            m_childtitle: "Progress bar",
-            m_childlink: "progress-bar",
-          },
-          {
-            m_childtitle: "Placeholder",
-            m_childlink: "placeholder",
-          },
-
-          {
-            m_childtitle: "Tab & Accordion",
-            m_childlink: "tab-accordion",
-          },
-        ],
+        childtitle: "projects",
+        childicon: "heroicons-outline:rectangle-group",
+        childlink: "/dashboard/projects",
+        can: "view projects"
       },
       {
-        megamenutitle: "Forms",
-        megamenuicon: "heroicons-outline:user",
-        singleMegamenu: [
-          {
-            m_childtitle: "Input",
-            m_childlink: "input",
-          },
-          {
-            m_childtitle: "Input group",
-            m_childlink: "input-group",
-          },
-          {
-            m_childtitle: "Input layout",
-            m_childlink: "input-layout",
-          },
-          {
-            m_childtitle: "Form validation",
-            m_childlink: "form-validation",
-          },
-          {
-            m_childtitle: "Wizard",
-            m_childlink: "form-wizard",
-          },
-          {
-            m_childtitle: "Input mask",
-            m_childlink: "input-mask",
-          },
-          {
-            m_childtitle: "File input",
-            m_childlink: "file-input",
-          },
-          {
-            m_childtitle: "Form repeater",
-            m_childlink: "form-repeater",
-          },
-          {
-            m_childtitle: "Textarea",
-            m_childlink: "textarea",
-          },
-          {
-            m_childtitle: "Checkbox",
-            m_childlink: "checkbox",
-          },
-          {
-            m_childtitle: "Radio button",
-            m_childlink: "radio-button",
-          },
-          {
-            m_childtitle: "Switch",
-            m_childlink: "switch",
-          },
-        ],
+        childtitle: "tasks",
+        childicon: "heroicons-outline:rectangle-stack",
+        childlink: "/dashboard/tasks",
+        can: "view tasks"
       },
       {
-        megamenutitle: "Utility",
-        megamenuicon: "heroicons-outline:user",
-        singleMegamenu: [
-          {
-            m_childtitle: "Invoice",
-            m_childlink: "invoice",
-          },
-          {
-            m_childtitle: "Pricing",
-            m_childlink: "pricing",
-          },
-          {
-            m_childtitle: "Testimonial",
-            m_childlink: "testimonial",
-          },
-          {
-            m_childtitle: "FAQ",
-            m_childlink: "faq",
-          },
-          {
-            m_childtitle: "Blog",
-            m_childlink: "blog",
-          },
-          {
-            m_childtitle: "404 page",
-            m_childlink: "/404",
-          },
-          {
-            m_childtitle: "Coming Soon",
-            m_childlink: "/coming-soon",
-          },
-          {
-            m_childtitle: "Under Maintanance page",
-            m_childlink: "/under-construction",
-          },
-        ],
+        childtitle: "leaves",
+        childicon: "heroicons-outline:calendar-days",
+        childlink: "/dashboard/leaves",
+        can: "view leaves"
       },
     ],
   },
-
   {
-    isHeadr: true,
-    title: "PAGES",
-  },
-  {
-    title: "Widgets",
+    title: "user_management",
     icon: "heroicons-outline:view-grid-add",
-    link: "form-elements",
     child: [
       {
-        childtitle: "Basic",
-        childlink: "basic",
-        childicon: "heroicons-outline:document-text",
+        childtitle: "clients",
+        childicon: "heroicons-outline:users",
+        childlink: "/dashboard/clients",
+        can: "view users"
       },
       {
-        childtitle: "Statistic",
-        childlink: "statistic",
-        childicon: "heroicons-outline:document-text",
+        childtitle: "employees",
+        childicon: "heroicons-outline:user-group",
+        childlink: "/dashboard/employees",
+        can: "view users"
+      },
+      {
+        childtitle: "roles_and_permissions",
+        childicon: "heroicons-outline:lock-open",
+        childlink: "/dashboard/roles",
+        can: "view roles"
       },
     ],
   },
-
   {
-    title: "Extra",
-    icon: "heroicons-outline:template",
-
+    title: "administration",
+    icon: "heroicons-outline:view-boards",
     child: [
       {
-        childtitle: "Basic Table",
-        childlink: "table-basic",
-        childicon: "heroicons-outline:table",
+        childtitle: "activity_logs",
+        childlink: "/dashboard/activities",
+        childicon: "heroicons-outline:list-bullet",
+        can: "manage activities"
       },
       {
-        childtitle: "Advanced table",
-        childlink: "table-advanced",
-        childicon: "heroicons-outline:table",
+        childtitle: "subscription_plans",
+        childlink: "/dashboard/packages",
+        childicon: "heroicons-outline:square-2-stack",
+        can: "manage packages"
       },
       {
-        childtitle: "Apex chart",
-        childlink: "appex-chart",
-        childicon: "heroicons-outline:chart-bar",
+        childtitle: "help_center",
+        childlink: "/dashboard/faq",
+        childicon: "heroicons-outline:clipboard-check",
+        can: "manage faq"
       },
       {
-        childtitle: "Chart js",
-        childlink: "chartjs",
-        childicon: "heroicons-outline:chart-bar",
-      },
-      {
-        childtitle: "Map",
-        childlink: "map",
-        childicon: "heroicons-outline:map",
+        childtitle: "system_settings",
+        childlink: "/dashboard/settings",
+        childicon: "heroicons-outline:wrench-screwdriver",
+        can: "manage settings"
       },
     ],
   },
@@ -874,6 +658,7 @@ import avatar3 from "@/assets/images/avatar/av-3.svg";
 import avatar4 from "@/assets/images/avatar/av-4.svg";
 import avatar5 from "@/assets/images/avatar/av-5.svg";
 import avatar6 from "@/assets/images/avatar/av-6.svg";
+
 export const assignOption = [
   {
     title: "Mahedi Amin",

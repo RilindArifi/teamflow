@@ -1,32 +1,41 @@
 import { useAuthStore } from "@/store/auth";
+import {SUPERADMIN} from "@/enums/roles";
 
 export function hasRole(name) {
     const { user } = useAuthStore();
-    return user?.role?.includes(name);
+    if (user?.roles === SUPERADMIN) return true;
+    return user.roles.includes(name);
 }
 
 export function can(permission) {
     const { user } = useAuthStore();
-    return user?.permissions?.some(p => p.name === permission);
+    if (user?.roles === SUPERADMIN) return true;
+    return user.permissions.some(p => p === permission);
 }
 
 export async function checkPermission(to, from, next, permissions) {
     const store = useAuthStore();
-    await store.fetchUser();
+    const success = await store.fetchUser();
 
-    if (store.token) {
-        const userPermissions = store.user.permissions?.map(p => p.name) || [];
+    if (success && store.session) {
+        const user = store.user;
 
-        const hasPermission = permissions.split(',').some(permission =>
-            userPermissions.includes(permission)
-        );
+        if (user?.roles === SUPERADMIN) {
+            return next();
+        }
 
-        if (!hasPermission) {
-            return next({ name: 'unauthorized' });
+        if (permissions && user?.roles) {
+            const hasPermission = permissions.split(',').some(permission =>
+                user.permissions.includes(permission)
+            );
+
+            if (!hasPermission) {
+                return next({ name: "unauthorized" });
+            }
         }
 
         return next();
     }
 
-    return next({ name: 'login' });
+    return next({ name: "login" });
 }

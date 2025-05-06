@@ -41,7 +41,7 @@ export const useChatStore = defineStore('chat',{
                 {
                     id: 3,
                     fullName: " Aileen Chavez",
-                    role: " Backend Developer",
+                    role: " Guest Developer",
                     lastmessage: "Hey! there I'm available",
                     lastmessageTime: "2:30 PM",
                     unredmessage: Math.floor(Math.random() * 10),
